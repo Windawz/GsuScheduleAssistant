@@ -2,15 +2,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:GsuScheduleAssistant.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="GsuScheduleAssistant.Views.MainView"
-             x:DataType="vm:MainViewModel">
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
+             x:Class="GsuScheduleAssistant.Views.MainView">
+  <UserControl.Styles>
+    <Style Selector="Button.main-menu">
+      <Setter Property="FontSize" Value="24.0" />
+      <Setter Property="Height" Value="48.0" />
+      <Setter Property="Margin" Value="24 4 24 4" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+  </UserControl.Styles>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Top">
+      <Button Classes="main-menu" Content="Fetch Schedule" />
+      <Button Classes="main-menu" Content="Enable Notifications" />
+    </StackPanel>
+    <ScrollViewer>
+      <DataGrid Margin="20"
+          AutoGenerateColumns="True" IsReadOnly="True" 
+          GridLinesVisibility="All"
+          BorderThickness="1" BorderBrush="Gray" />
+    </ScrollViewer>
+  </DockPanel>
 </UserControl>
